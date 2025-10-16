@@ -33,16 +33,16 @@ Con intents explícitos diriges la acción a una *activity* concreta dentro de t
 | Aplicar transiciones personalizadas entre activities | Intent explícito con animaciones (overridePendingTransition) | 1. Navegar entre pantallas <br>2. Ver efectos de transición (fade, slide, etc.) |
 
 ## 🖼 Capturas de pantalla / GIF
-1. Abrir Galería
-<img width="225" height="460" alt="Abrir Galería" src="https://github.com/user-attachments/assets/767a08b0-7f1f-48ad-8301-ad45aee4aac8" />
-2. Abrir Contactos
-<img width="225" height="460" alt="Abrir Contactos" src="https://github.com/user-attachments/assets/56ebe362-faa7-4b25-82d8-58e78e43dd84" />
-3. Abrir Llamada
-<img width="225" height="460" alt="Abrir Llamada" src="https://github.com/user-attachments/assets/81f945dc-41c7-4da6-8871-5c9029bc0cb3" />
-4. Abrir Ajustes
-<img width="225" height="460" alt="Abrir Ajustes" src="https://github.com/user-attachments/assets/b8e4b50f-05eb-4bad-a306-3e2ddb47ba60" />
-5. Abrir Ubicación
-<img width="225" height="460" alt="Abrir Ubicación" src="https://github.com/user-attachments/assets/481387a4-7f65-40ae-8a7d-9396d5e4c722" />
+1️⃣ Abrir Galería
+<img width="250" height="480" alt="Abrir Galería" src="https://github.com/user-attachments/assets/767a08b0-7f1f-48ad-8301-ad45aee4aac8" />
+2️⃣ Abrir Contactos
+<img width="250" height="480" alt="Abrir Contactos" src="https://github.com/user-attachments/assets/56ebe362-faa7-4b25-82d8-58e78e43dd84" />
+3️⃣ Abrir Llamada
+<img width="250" height="480" alt="Abrir Llamada" src="https://github.com/user-attachments/assets/81f945dc-41c7-4da6-8871-5c9029bc0cb3" />
+4️⃣ Abrir Ajustes
+<img width="250" height="480" alt="Abrir Ajustes" src="https://github.com/user-attachments/assets/b8e4b50f-05eb-4bad-a306-3e2ddb47ba60" />
+5️⃣ Abrir Ubicación
+<img width="250" height="480" alt="Abrir Ubicación" src="https://github.com/user-attachments/assets/481387a4-7f65-40ae-8a7d-9396d5e4c722" />
 
 ---
 
