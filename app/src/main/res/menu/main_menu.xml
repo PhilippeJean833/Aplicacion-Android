@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_perfil"
-        android:title="Perfil"/>
+        android:title="Perfil" />
     <item
         android:id="@+id/action_web"
-        android:title="Docs Android"/>
+        android:title="Docs Android" />
     <item
         android:id="@+id/action_ajustes"
-        android:title="Ajustes App"/>
+        android:title="Ajustes App" />
     <item
         android:id="@+id/action_salir"
-        android:title="Salir"/>
+        android:title="Salir" />
 </menu>

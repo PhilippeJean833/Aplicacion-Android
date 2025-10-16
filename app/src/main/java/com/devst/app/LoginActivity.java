@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         edtEmail = findViewById(R.id.edtEmail);
-        edtPass  = findViewById(R.id.edtPass);
+        edtPass = findViewById(R.id.edtPass);
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(v -> intentoInicioSesion());
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void intentoInicioSesion() {
         String email = edtEmail.getText() != null ? edtEmail.getText().toString().trim() : "";
-        String pass  = edtPass.getText()  != null ? edtPass.getText().toString() : "";
+        String pass = edtPass.getText() != null ? edtPass.getText().toString() : "";
 
         if (TextUtils.isEmpty(email)) {
             edtEmail.setError("Ingresa tu correo");

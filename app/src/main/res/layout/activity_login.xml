@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -16,7 +15,7 @@
         android:background="@drawable/bg_header"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Título -->
     <TextView
@@ -33,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/header"
-        app:layout_constraintVertical_bias="0.75"/>
+        app:layout_constraintVertical_bias="0.75" />
 
     <!-- Subtítulo -->
     <TextView
@@ -47,7 +46,7 @@
         android:paddingEnd="@dimen/space_20"
         app:layout_constraintBottom_toBottomOf="@id/header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Tarjeta del formulario -->
     <LinearLayout
@@ -75,7 +74,7 @@
             android:textColorHint="@color/text_dim"
             android:imeOptions="actionNext"
             android:paddingTop="@dimen/space_8"
-            android:paddingBottom="@dimen/space_8"/>
+            android:paddingBottom="@dimen/space_8" />
 
         <EditText
             android:id="@+id/edtPass"
@@ -88,7 +87,7 @@
             android:textColorHint="@color/text_dim"
             android:imeOptions="actionDone"
             android:paddingTop="@dimen/space_8"
-            android:paddingBottom="@dimen/space_8"/>
+            android:paddingBottom="@dimen/space_8" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -100,7 +99,7 @@
             android:textColor="@color/on_primary"
             android:textStyle="bold"
             android:paddingTop="14dp"
-            android:paddingBottom="14dp"/>
+            android:paddingBottom="14dp" />
 
         <TextView
             android:id="@+id/tvRecuperarpass"
@@ -108,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_12"
             android:text="@string/olviste_pass"
-            android:textColor="@color/brand_primary"/>
+            android:textColor="@color/brand_primary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no_cuenta"
-                android:textColor="@color/text_dim"/>
+                android:textColor="@color/text_dim" />
 
             <TextView
                 android:id="@+id/tvCrear"
@@ -130,7 +129,7 @@
                 android:text="@string/crear_cuenta"
                 android:textStyle="bold"
                 android:paddingStart="@dimen/space_8"
-                android:textColor="@color/brand_primary"/>
+                android:textColor="@color/brand_primary" />
         </LinearLayout>
     </LinearLayout>
 

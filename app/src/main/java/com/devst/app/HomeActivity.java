@@ -2,14 +2,15 @@ package com.devst.app;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,24 +23,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-
 public class HomeActivity extends AppCompatActivity {
 
-    // Variables
     private String emailUsuario = "";
     private TextView tvBienvenida;
 
-    //VARIABLES PARA LA CAMARA
     private Button btnLinterna;
     private CameraManager camara;
     private String camaraID = null;
     private boolean luz = false;
 
-    // Activity Result (para recibir datos de PerfilActivity)
     private final ActivityResultLauncher<Intent> editarPerfilLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
@@ -50,16 +43,13 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
 
-    // Launcher para pedir permiso de cámara en tiempo de ejecución
     private final ActivityResultLauncher<String> permisoCamaraLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
-                if (granted) {
-                    alternarluz(); // si conceden permiso, intentamos prender/apagar
-
-                } else {
-                    Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
-                }
+                if (granted) alternarluz();
+                else Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
             });
+
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +57,11 @@ public class HomeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
+        prefs = getSharedPreferences("configuracion_app", MODE_PRIVATE);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Referencias
         tvBienvenida = findViewById(R.id.tvBienvenida);
         Button btnIrPerfil = findViewById(R.id.btnIrPerfil);
         Button btnAbrirWeb = findViewById(R.id.btnAbrirWeb);
@@ -78,137 +69,178 @@ public class HomeActivity extends AppCompatActivity {
         Button btnCompartir = findViewById(R.id.btnCompartir);
         btnLinterna = findViewById(R.id.btnLinterna);
         Button btnCamara = findViewById(R.id.btnCamara);
+        Button btnAjustes = findViewById(R.id.btnAbrirConfig);
+        Button btnGaleria = findViewById(R.id.btnGaleria);
+        Button btnContactos = findViewById(R.id.btnContactos);
+        Button btnUbicacion = findViewById(R.id.btnUbicacion);
+        Button btnLlamar = findViewById(R.id.btnLlamada);
 
-        // Recibir dato del Login
         emailUsuario = getIntent().getStringExtra("email_usuario");
-        if (emailUsuario == null) emailUsuario = "";
+        if(emailUsuario == null) emailUsuario = "";
         tvBienvenida.setText("Bienvenido: " + emailUsuario);
 
-        // Evento: Intent explícito → ProfileActivity (esperando resultado)
+        // PERFIL
         btnIrPerfil.setOnClickListener(v -> {
             Intent i = new Intent(HomeActivity.this, PerfilActivity.class);
             i.putExtra("email_usuario", emailUsuario);
             editarPerfilLauncher.launch(i);
+            aplicarTransicion();
         });
 
-        // Evento: Intent implícito → abrir web
+        // WEB
         btnAbrirWeb.setOnClickListener(v -> {
             Uri uri = Uri.parse("https://www.santotomas.cl");
-            Intent viewWeb = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(viewWeb);
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            aplicarTransicion();
         });
 
-        // Evento: Intent implícito → enviar correo
+        // CORREO
         btnEnviarCorreo.setOnClickListener(v -> {
             Intent email = new Intent(Intent.ACTION_SENDTO);
-            email.setData(Uri.parse("mailto:")); // Solo apps de correo
+            email.setData(Uri.parse("mailto:"));
             email.putExtra(Intent.EXTRA_EMAIL, new String[]{emailUsuario});
             email.putExtra(Intent.EXTRA_SUBJECT, "Prueba desde la app");
             email.putExtra(Intent.EXTRA_TEXT, "Hola, esto es un intento de correo.");
             startActivity(Intent.createChooser(email, "Enviar correo con:"));
+            aplicarTransicion();
         });
 
-        // Evento: Intent implícito → compartir texto
+        // COMPARTIR
         btnCompartir.setOnClickListener(v -> {
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("text/plain");
             share.putExtra(Intent.EXTRA_TEXT, "Hola desde mi app Android 😎");
             startActivity(Intent.createChooser(share, "Compartir usando:"));
+            aplicarTransicion();
         });
 
+        // CONTACTOS
+        btnContactos.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
+            startActivity(intent);
+            aplicarTransicion();
+        });
 
-        //Linterna Inicializamos la camara
+        // GALERIA
+        btnGaleria.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivity(intent);
+            aplicarTransicion();
+        });
 
+        // AJUSTES
+        btnAjustes.setOnClickListener(v -> {
+            startActivity(new Intent(this, AjustesActivity.class));
+            aplicarTransicion();
+        });
+
+        // UBICACION
+        btnUbicacion.setOnClickListener(v -> {
+            Uri uri = Uri.parse("https://maps.app.goo.gl/H2HU6FinFcqMour98");
+            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            aplicarTransicion();
+        });
+
+        // LLAMADA
+        btnLlamar.setOnClickListener(v -> {
+            String numero = "+56945341996";
+            Uri uri = Uri.parse("tel:" + numero);
+            startActivity(new Intent(Intent.ACTION_DIAL, uri));
+            aplicarTransicion();
+        });
+
+        // CAMARA
+        btnCamara.setOnClickListener(v -> {
+            startActivity(new Intent(this, CamaraActivity.class));
+            aplicarTransicion();
+        });
+
+        // LINTERNAS
         camara = (CameraManager) getSystemService(CAMERA_SERVICE);
-
         try {
-            for (String id : camara.getCameraIdList()) {
+            for(String id : camara.getCameraIdList()){
                 CameraCharacteristics cc = camara.getCameraCharacteristics(id);
                 Boolean disponibleFlash = cc.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
                 Integer lensFacing = cc.get(CameraCharacteristics.LENS_FACING);
-                if (Boolean.TRUE.equals(disponibleFlash)
-                        && lensFacing != null
-                        && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
-                    camaraID = id; // prioriza la cámara trasera con flash
+                if(Boolean.TRUE.equals(disponibleFlash) && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_BACK){
+                    camaraID = id;
                     break;
                 }
             }
-        } catch (CameraAccessException e) {
-            Toast.makeText(this, "No se puede acceder a la cámara", Toast.LENGTH_SHORT).show();
+        } catch (CameraAccessException e){
+            Toast.makeText(this,"No se puede acceder a la cámara", Toast.LENGTH_SHORT).show();
         }
 
         btnLinterna.setOnClickListener(v -> {
-            if (camaraID == null) {
-                Toast.makeText(this, "Este dispositivo no tiene flash disponible", Toast.LENGTH_SHORT).show();
+            if(camaraID == null){
+                Toast.makeText(this,"Este dispositivo no tiene flash disponible", Toast.LENGTH_SHORT).show();
                 return;
             }
-            // Verifica permiso en tiempo de ejecución
-            boolean camGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                    == PackageManager.PERMISSION_GRANTED;
-
-            if (camGranted) {
-                alternarluz();
-            } else {
-                permisoCamaraLauncher.launch(Manifest.permission.CAMERA);
-            }
+            boolean camGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+            if(camGranted) alternarluz();
+            else permisoCamaraLauncher.launch(Manifest.permission.CAMERA);
         });
-
-        btnCamara.setOnClickListener(v ->
-                startActivity(new Intent(this, CamaraActivity.class))
-        );
-
     }
 
-    //Linterna
-    private void alternarluz() {
-        try {
+    private void alternarluz(){
+        try{
             luz = !luz;
             camara.setTorchMode(camaraID, luz);
             btnLinterna.setText(luz ? "Apagar Linterna" : "Encender Linterna");
-        } catch (CameraAccessException e) {
-            Toast.makeText(this, "Error al controlar la linterna", Toast.LENGTH_SHORT).show();
+        } catch(CameraAccessException e){
+            Toast.makeText(this,"Error al controlar la linterna", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (camaraID != null && luz) {
-            try {
-                camara.setTorchMode(camaraID, false);
-                luz = false;
-                if (btnLinterna != null) btnLinterna.setText("Encender Linterna");
-            } catch (CameraAccessException ignored) {}
+        if(camaraID != null && luz){
+            try{
+                camara.setTorchMode(camaraID,false);
+                luz=false;
+                if(btnLinterna != null) btnLinterna.setText("Encender Linterna");
+            } catch(CameraAccessException ignored){}
         }
     }
 
-
-
-    // ===== Menú en HomeActivity =====
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull android.view.Menu menu){
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item){
         int id = item.getItemId();
-        if (id == R.id.action_perfil) {
-            // Ir al perfil (explícito)
+        if(id == R.id.action_perfil){
             Intent i = new Intent(this, PerfilActivity.class);
             i.putExtra("email_usuario", emailUsuario);
             editarPerfilLauncher.launch(i);
+            aplicarTransicion();
             return true;
-        } else if (id == R.id.action_web) {
-            // Abrir web (implícito)
+        } else if(id == R.id.action_web){
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.android.com")));
+            aplicarTransicion();
             return true;
-        } else if (id == R.id.action_salir) {
-            finish(); // Cierra HomeActivity
+        } else if(id == R.id.action_ajustes){
+            startActivity(new Intent(this, AjustesActivity.class));
+            aplicarTransicion();
+            return true;
+        } else if(id == R.id.action_salir){
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Método para aplicar la transición guardada
+    private void aplicarTransicion(){
+        int trans = prefs.getInt("transicion",1);
+        if(trans == 1){
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } else {
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        }
     }
 }

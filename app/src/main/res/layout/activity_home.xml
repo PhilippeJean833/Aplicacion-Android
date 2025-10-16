@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,7 +19,7 @@
             android:background="@color/brand_primary"
             android:title="Menú Principal"
             android:titleTextColor="@android:color/white"
-            app:titleCentered="true"/>
+            app:titleCentered="true" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Contenido desplazable, con padding propio -->
@@ -55,7 +54,7 @@
                     android:text="Bienvenido:"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_main"/>
+                    android:textColor="@color/text_main" />
 
                 <!-- Botones -->
                 <Button
@@ -63,28 +62,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Ir a Perfil (resultado)"/>
+                    android:text="Ir a Perfil (resultado)" />
 
                 <Button
                     android:id="@+id/btnAbrirWeb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Abrir sitio web"/>
+                    android:text="Abrir sitio web" />
 
                 <Button
                     android:id="@+id/btnEnviarCorreo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Enviar correo"/>
+                    android:text="Enviar correo" />
 
                 <Button
                     android:id="@+id/btnCompartir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Compartir texto"/>
+                    android:text="Compartir texto" />
 
                 <Button
                     android:id="@+id/btnLinterna"
@@ -98,37 +97,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Abrir Cámara"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="12dp" />
+
                 <Button
                     android:id="@+id/btnUbicacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ir a Ubicacion"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="12dp" />
+
                 <Button
-                    android:id="@+id/btnCamaraF"
+                    android:id="@+id/btnLlamada"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Abrir Camara Frontal"
-                    android:layout_marginTop="12dp"/>
+                    android:text="Llamar"
+                    android:layout_marginTop="12dp" />
+
                 <Button
                     android:id="@+id/btnAbrirConfig"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Abrir Ajustes"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="12dp" />
+
                 <Button
                     android:id="@+id/btnGaleria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Abrir Galeria"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="12dp" />
+
                 <Button
                     android:id="@+id/btnContactos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ver Contactos"
-                    android:layout_marginTop="12dp"/>
+                    android:layout_marginTop="12dp" />
 
 
             </LinearLayout>
