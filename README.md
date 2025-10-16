@@ -46,4 +46,4 @@ Con intents explícitos diriges la acción a una *activity* concreta dentro de t
 
 ## 📦 APK Debug / Instrucciones de compilación
 
-Busca el archivo en:  
+Busca el archivo en: https://github.com/PhilippeJean833/Aplicacion-Android/releases/tag/APK 
