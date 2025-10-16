@@ -14,6 +14,8 @@ import android.provider.Settings;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.provider.Settings;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -130,8 +132,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // AJUSTES
         btnAjustes.setOnClickListener(v -> {
-            startActivity(new Intent(this, AjustesActivity.class));
-            aplicarTransicion();
+            Intent intent = new Intent(Settings.ACTION_SETTINGS);
+            startActivity(intent);
         });
 
         // UBICACION
