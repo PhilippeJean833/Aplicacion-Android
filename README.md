@@ -33,10 +33,16 @@ Con intents explícitos diriges la acción a una *activity* concreta dentro de t
 | Aplicar transiciones personalizadas entre activities | Intent explícito con animaciones (overridePendingTransition) | 1. Navegar entre pantallas <br>2. Ver efectos de transición (fade, slide, etc.) |
 
 ## 🖼 Capturas de pantalla / GIF
-
-
-
-*(Sustituye las imágenes del ejemplo con capturas reales de tu app)*
+1. Abrir Galeria
+![WhatsApp Image 2025-10-16 at 11 59 34 (2)](https://github.com/user-attachments/assets/767a08b0-7f1f-48ad-8301-ad45aee4aac8)
+2. Abrir Contactos
+![WhatsApp Image 2025-10-16 at 11 59 35](https://github.com/user-attachments/assets/56ebe362-faa7-4b25-82d8-58e78e43dd84)
+3. Abrir Llamada
+![WhatsApp Image 2025-10-16 at 11 59 34](https://github.com/user-attachments/assets/81f945dc-41c7-4da6-8871-5c9029bc0cb3)
+4. Abrir Ajustes
+![WhatsApp Image 2025-10-16 at 11 59 35 (1)](https://github.com/user-attachments/assets/b8e4b50f-05eb-4bad-a306-3e2ddb47ba60)
+5. Abrir Ubicacion
+![WhatsApp Image 2025-10-16 at 11 59 34 (1)](https://github.com/user-attachments/assets/481387a4-7f65-40ae-8a7d-9396d5e4c722)
 
 ## 📦 APK Debug / Instrucciones de compilación
 
